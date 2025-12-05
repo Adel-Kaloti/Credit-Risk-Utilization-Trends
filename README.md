@@ -22,25 +22,21 @@ Analyzes credit portfolio data to examine the relationship between utilization, 
 ## 🎯 Main Business Questions & KPIs
 
 ### 1) Where is portfolio exposure concentrated?
-**KPIs**
 - Total Credit Limit
 - Total Current Balance (Exposure)
 - Exposure Share by Segment/Region (%)
 
 ### 2) Which customer groups show the highest emerging risk?
-**KPIs**
 - Delinquency Rate (by Segment/Region)
 - Avg DPD (Days Past Due)
 - High Utilization Share (% of accounts above a chosen threshold)
 
 ### 3) How does utilization relate to repayment behavior?
-**KPIs**
 - Balance-to-Limit Ratio (Utilization)
 - Payment Ratio (Amount Paid / Amount Due)
 - Delinquency Rate by Utilization Band
 
 ### 4) How does risk evolve across 2023?
-**KPIs**
 - Monthly Delinquency Trend
 - DPD Bucket Mix by Month (On Time, 1–30, 31–60, 61+)
 - Credit Score Trend by Segment
@@ -92,7 +88,21 @@ This structure makes analysis faster, cleaner, and BI-ready.
 | Score Band | Risk segmentation by credit score. Example bands: **Poor / Fair / Good / Very Good / Excellent** from `bureau_monthly_snapshot`. |
 
 
+ <tr>
+    <h1 align="center">📐 Data Dimentions</h1>
+   <p align="center">
 
+Documenting the dimensions ensures a clear understanding of each DIM, This validation step is essential before moving into performance analysis and KPI modeling.
+
+
+| Dimension | What it Represents | Why It Matters |
+|---|---|---|
+| Segment | Customer risk/value grouping | Enables risk prioritization and targeted policy actions across distinct customer profiles. |
+| Region | Customer geographic location | Highlights geographic concentration of exposure and delinquency for regional monitoring. |
+| Product Type | Credit product category (e.g., credit card, personal loan) | Supports product-level risk comparison and portfolio mix analysis. |
+| Employment Status | Customer income stability proxy | Helps explain repayment capacity differences and early risk shifts. |
+| Statement Month | Time dimension for billing cycles | Drives trend analysis for delinquency, utilization, and seasonal risk patterns. |
+| Credit Score Band | Grouped credit score categories | Simplifies risk segmentation and makes score-driven insights dashboard-friendly. |
 
 
 
