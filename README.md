@@ -19,7 +19,7 @@ Analyzes credit portfolio data to examine the relationship between utilization, 
 
 -----
 
-## 🎯 Main Business Questions & KPIs
+## 🎯 Main Business Questions
 
 ### 1) Where is portfolio exposure concentrated?
 - Total Credit Limit
@@ -103,6 +103,50 @@ Documenting the dimensions ensures a clear understanding of each DIM, This valid
 | Employment Status | Customer income stability proxy | Helps explain repayment capacity differences and early risk shifts. |
 | Statement Month | Time dimension for billing cycles | Drives trend analysis for delinquency, utilization, and seasonal risk patterns. |
 | Credit Score Band | Grouped credit score categories | Simplifies risk segmentation and makes score-driven insights dashboard-friendly. |
+
+
+---
+
+# CPA by Target Audience
+
+<p align="center">
+<img width="400" height="400" alt="Screenshot 2025-12-04 225326" src="https://github.com/user-attachments/assets/a5972385-0692-48a8-b787-aa84dc313570" />
+  </p>
+  
+### 🎯Insights
+
+- **Men 18–24 are the most expensive segment**, with an average CPA of **$4.7K**, almost **3x higher** than the overall “All Ages” benchmark (~$1.7K).
+- **Women 35–44 are the most cost-efficient audience**, with an average CPA of only **$0.8K**, making them a strong candidate for budget scaling.
+- **Men 25–34 also perform efficiently** at around **$1.0K CPA**, staying below the overall average and offering a cheaper alternative to Men 18–24.
+- **Women 25–34 sit in the middle** (~**$2.3K CPA**), suggesting that performance is acceptable but less efficient than older women or Men 25–34.
+
+----
+
+
+
+| New Column | Description |
+|---|---|
+| statement_month | Normalized month key derived from `statement_date` (first day of the month) to simplify monthly trend analysis. |
+| utilization | Credit usage ratio per account: `current_balance / credit_limit`. |
+| dpd | Days Past Due calculated from `due_date` to `paid_date` (or `2023-12-31` if unpaid). |
+| is_delinquent | Flag for late payment: `1` if `dpd > 0`, else `0`. |
+| is_on_time | Flag for on-time payment: `1` if `dpd <= 0`, else `0`. |
+| dpd_bucket | Categorical delinquency band: `On Time`, `1-30`, `31-60`, `61+`. |
+| payment_ratio | Repayment strength per statement: `amount_paid / amount_due`. |
+| balance_to_income_ratio | Early stress indicator: `current_balance / income_monthly`. |
+| high_util_flag | High leverage flag: `1` if `utilization >= 0.80`, else `0`. |
+| score_band | Risk segmentation based on latest score: `Poor`, `Fair`, `Good`, `Very Good`, `Excellent`. |
+| exposure_at_risk_amount | Row-level risk exposure: `current_balance` if delinquent, else `0`. |
+
+
+
+
+
+
+
+
+
+
 
 
 
