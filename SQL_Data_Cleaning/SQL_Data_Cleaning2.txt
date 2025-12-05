@@ -1,0 +1,48 @@
+UPDATE dbo.customers
+SET gender = ISNULL(gender,'Unknown'),
+    region = ISNULL(region,'Unknown'),
+    segment = ISNULL(segment,'Unknown'),
+    employment_status = ISNULL(employment_status,'Unknown');
+
+
+UPDATE dbo.credit_accounts
+SET credit_limit = ISNULL(credit_limit,0),
+    current_balance = ISNULL(current_balance,0),
+    interest_rate = ISNULL(interest_rate,0),
+    min_payment_pct = ISNULL(min_payment_pct,0);
+
+
+UPDATE dbo.billing_payments
+SET amount_due = ISNULL(amount_due,0),
+    amount_paid = ISNULL(amount_paid,0);
+
+
+
+UPDATE dbo.bureau_monthly_snapshot
+SET credit_score = ISNULL(credit_score,0),
+    inquiry_count_3m = ISNULL(inquiry_count_3m,0),
+    total_open_accounts = ISNULL(total_open_accounts,0),
+    external_utilization_pct = ISNULL(external_utilization_pct,0),
+    public_records_count = ISNULL(public_records_count,0);
+
+
+
+SELECT 
+    SUM(CASE WHEN utilization IS NULL THEN 1 ELSE 0 END) AS null_utilization,
+    SUM(CASE WHEN credit_limit = 0 THEN 1 ELSE 0 END) AS zero_credit_limits
+FROM dbo.credit_accounts;
+
+
+
+SELECT 
+    SUM(CASE WHEN dpd IS NULL THEN 1 ELSE 0 END) AS null_dpd,
+    SUM(CASE WHEN dpd_bucket IS NULL THEN 1 ELSE 0 END) AS null_bucket
+FROM dbo.billing_payments;
+
+
+
+SELECT 
+    AVG(utilization) AS avg_utilization,
+    AVG(dpd) AS avg_dpd
+FROM dbo.v_clean_credit_fact;
+

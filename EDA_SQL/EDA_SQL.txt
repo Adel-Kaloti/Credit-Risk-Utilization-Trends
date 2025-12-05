@@ -1,0 +1,147 @@
+WITH customer_age AS (
+    SELECT
+        customer_id,
+        gender,
+        region,
+        segment,
+        DATEDIFF(YEAR, birth_date, '2023-12-31') AS age
+    FROM dbo.customers
+    WHERE birth_date IS NOT NULL
+)
+SELECT
+    CASE
+        WHEN age < 25 THEN '<25'
+        WHEN age BETWEEN 25 AND 34 THEN '25-34'
+        WHEN age BETWEEN 35 AND 44 THEN '35-44'
+        WHEN age BETWEEN 45 AND 54 THEN '45-54'
+        WHEN age BETWEEN 55 AND 64 THEN '55-64'
+        ELSE '65+'
+    END AS age_band,
+    COUNT(*) AS customers_count
+FROM customer_age
+GROUP BY
+    CASE
+        WHEN age < 25 THEN '<25'
+        WHEN age BETWEEN 25 AND 34 THEN '25-34'
+        WHEN age BETWEEN 35 AND 44 THEN '35-44'
+        WHEN age BETWEEN 45 AND 54 THEN '45-54'
+        WHEN age BETWEEN 55 AND 64 THEN '55-64'
+        ELSE '65+'
+    END
+ORDER BY customers_count DESC;
+-----------------------------------------------------------------------------------------
+WITH region_segment AS (
+    SELECT
+        region,
+        segment,
+        COUNT(*) AS customers_count
+    FROM dbo.customers
+    GROUP BY region, segment
+)
+SELECT
+    region,
+    segment,
+    customers_count,
+    CAST(customers_count AS FLOAT) 
+        / SUM(customers_count) OVER (PARTITION BY region) AS segment_share_in_region
+FROM region_segment
+ORDER BY region, customers_count DESC;
+------------------------------------------------------------------------------------
+
+WITH ratios AS (
+    SELECT
+        account_id,
+        customer_id,
+        credit_limit,
+        current_balance,
+        CAST(current_balance AS FLOAT) / NULLIF(credit_limit, 0) AS balance_to_limit
+    FROM dbo.credit_accounts
+    WHERE credit_limit > 0
+)
+SELECT
+    account_id,
+    customer_id,
+    credit_limit,
+    current_balance,
+    balance_to_limit,
+    RANK() OVER (ORDER BY balance_to_limit DESC) AS risk_rank
+FROM ratios
+ORDER BY risk_rank;
+
+------------------------------------------------------------------------------------
+
+WITH dpd_calc AS (
+    SELECT
+        account_id,
+        statement_date,
+        due_date,
+        paid_date,
+        DATEDIFF(
+            DAY,
+            due_date,
+            COALESCE(paid_date, '2023-12-31')
+        ) AS dpd
+    FROM dbo.billing_payments
+)
+SELECT
+    statement_date,
+    AVG(CASE WHEN dpd > 0 THEN 1.0 ELSE 0.0 END) AS delinquency_rate
+FROM dpd_calc
+GROUP BY statement_date
+ORDER BY statement_date;
+
+--------------------------------------------------------------------------------
+
+
+WITH monthly_scores AS (
+    SELECT
+        snapshot_month,
+        AVG(credit_score) AS avg_score
+    FROM dbo.bureau_monthly_snapshot
+    GROUP BY snapshot_month
+)
+SELECT
+    snapshot_month,
+    avg_score,
+    AVG(avg_score) OVER (
+        ORDER BY snapshot_month
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    ) AS avg_score_3m_ma
+FROM monthly_scores
+ORDER BY snapshot_month;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

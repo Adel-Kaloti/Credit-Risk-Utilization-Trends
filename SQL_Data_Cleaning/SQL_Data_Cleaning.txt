@@ -1,0 +1,90 @@
+USE Credit_Risk_DB;
+GO
+
+SELECT 'customers' AS table_name, COUNT(*) AS row_count FROM dbo.customers
+UNION ALL
+SELECT 'credit_accounts', COUNT(*) FROM dbo.credit_accounts
+UNION ALL
+SELECT 'billing_payments', COUNT(*) FROM dbo.billing_payments
+UNION ALL
+SELECT 'bureau_monthly_snapshot', COUNT(*) FROM dbo.bureau_monthly_snapshot;
+
+----------------------------------------------
+
+-- Null_check
+SELECT
+    SUM(CASE WHEN birth_date IS NULL THEN 1 ELSE 0 END) AS null_birth_date,
+    SUM(CASE WHEN region IS NULL THEN 1 ELSE 0 END) AS null_region,
+    SUM(CASE WHEN segment IS NULL THEN 1 ELSE 0 END) AS null_segment,
+    SUM(CASE WHEN income_monthly IS NULL THEN 1 ELSE 0 END) AS null_income
+FROM dbo.customers;
+
+SELECT
+    SUM(CASE WHEN credit_limit IS NULL THEN 1 ELSE 0 END) AS null_credit_limit,
+    SUM(CASE WHEN current_balance IS NULL THEN 1 ELSE 0 END) AS null_current_balance
+FROM dbo.credit_accounts;
+
+SELECT
+    SUM(CASE WHEN statement_date IS NULL THEN 1 ELSE 0 END) AS null_statement_date,
+    SUM(CASE WHEN due_date IS NULL THEN 1 ELSE 0 END) AS null_due_date,
+    SUM(CASE WHEN amount_due IS NULL THEN 1 ELSE 0 END) AS null_amount_due,
+    SUM(CASE WHEN amount_paid IS NULL THEN 1 ELSE 0 END) AS null_amount_paid
+FROM dbo.billing_payments;
+
+----------------------------------------------
+
+SELECT *
+FROM dbo.customers
+WHERE birth_date IS NOT NULL
+  AND (DATEDIFF(YEAR, birth_date, '2023-12-31') < 18
+       OR DATEDIFF(YEAR, birth_date, '2023-12-31') > 90);
+-------------------------------------------------------------
+
+
+
+SELECT *
+FROM dbo.customers
+WHERE income_monthly < 500
+   OR income_monthly > 50000;
+
+
+
+_____________________________________
+
+SELECT *
+FROM dbo.customers
+WHERE join_date < '2000-01-01'
+   OR join_date > '2023-12-31';
+
+-------------------------------------------------
+
+SELECT *
+FROM dbo.credit_accounts
+WHERE status = 'active'
+  AND credit_limit = 0;
+
+
+
+________________------
+SELECT *
+FROM dbo.credit_accounts
+WHERE interest_rate < 0
+   OR interest_rate > 100;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
