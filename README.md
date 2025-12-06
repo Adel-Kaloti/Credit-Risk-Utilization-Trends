@@ -8,12 +8,12 @@
 
 Analyzes credit portfolio data to examine the relationship between utilization, repayment behavior, and customer risk. Identifies high-exposure segments and regions, tracks delinquency concentration over time, and surfaces early risk signals that support targeted monitoring and informed portfolio decisions.
 
-<img width="2400" height="1601" alt="Screenshot 2025-12-04 232246" src="https://github.com/user-attachments/assets/cdf3f15f-5865-48b5-93e1-92a624bcb90f" />
+<img width="2396" height="1600" alt="Screenshot 2025-12-06 224010" src="https://github.com/user-attachments/assets/1997ae5f-6b1d-4319-a0ed-6f09f054f535" />
 
 
 <p align="center">
   <a href="https://public.tableau.com/app/profile/adel.kaloti1" target="_blank">
-    <img src="https://img.shields.io/badge/View%20Interactive Dashboard on%20Tableau-006699?style=for-the-badge&logo=tableau&logoColor=white"/>
+    <img src="https://img.shields.io/badge/View%20Interactive Dashboard on%20Tableau-D3B348?style=for-the-badge&logo=tableau&logoColor=white"/>
   </a>
 </p>
 
@@ -57,10 +57,10 @@ This structure makes analysis faster, cleaner, and BI-ready.
 
 
 <p align="center">
-  <a href="ETL_SQL.txt">
-    <img src="https://img.shields.io/badge/View%20 ETL SQL%20File-ff9933?style=for-the-badge&logo=database&logoColor=white" />
+  <a href="EDA_SQL/EDA_SQL.txt">
+    <img src="https://img.shields.io/badge/View%20 EDA SQL%20File-ff9933?style=for-the-badge&logo=database&logoColor=white" />
   </a>
-  <a href="Data_Cleaning_SQL.txt" >
+  <a href="SQL_Data_Cleaning/SQL_Data_Cleaning.txt" >
     <img src="https://img.shields.io/badge/Data%20Cleaning%20SQL-006699?style=for-the-badge&logo=tableau&logoColor=white" />
   </a>
   </p>
