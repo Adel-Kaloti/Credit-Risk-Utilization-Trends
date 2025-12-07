@@ -107,42 +107,86 @@ Documenting the dimensions ensures a clear understanding of each DIM, This valid
 
 ---
 
-# CPA by Target Audience
+# Utilization vs Avg DPD per Account
 
 <p align="center">
-<img width="400" height="400" alt="Screenshot 2025-12-04 225326" src="https://github.com/user-attachments/assets/a5972385-0692-48a8-b787-aa84dc313570" />
+  <img width="1580" height="644" alt="Screenshot 2025-12-07 195159" src="https://github.com/user-attachments/assets/bf992971-6801-47d7-9ce4-ca7e6e56e15b" />
+
   </p>
-  
+
 ### 🎯Insights
 
-- **Men 18–24 are the most expensive segment**, with an average CPA of **$4.7K**, almost **3x higher** than the overall “All Ages” benchmark (~$1.7K).
-- **Women 35–44 are the most cost-efficient audience**, with an average CPA of only **$0.8K**, making them a strong candidate for budget scaling.
-- **Men 25–34 also perform efficiently** at around **$1.0K CPA**, staying below the overall average and offering a cheaper alternative to Men 18–24.
-- **Women 25–34 sit in the middle** (~**$2.3K CPA**), suggesting that performance is acceptable but less efficient than older women or Men 25–34.
+- Most accounts cluster at low-to-mid utilization (~0.05–0.40) with very low Avg DPD (~0–5), suggesting the core portfolio is generally stable.
+- The scatter shows weak/unclear linear relationship between utilization and Avg DPD; delinquency appears driven by additional factors beyond usage level alone.
+- High-risk outliers exist across the range, but very high utilization (~0.70–1.00) includes several elevated Avg DPD points (often 10–40+), supporting a “high utilization = early warning” flag for closer monitoring.
 
-----
+----------------------------------------
 
+# Risk Concentration by Segment
 
+<p align="center">
+<img width="600" height="408" alt="Screenshot 2025-12-07 195225" src="https://github.com/user-attachments/assets/d404d88b-c51d-4a90-8478-9adccd8c09e8" />
 
-| New Column | Description |
-|---|---|
-| statement_month | Normalized month key derived from `statement_date` (first day of the month) to simplify monthly trend analysis. |
-| utilization | Credit usage ratio per account: `current_balance / credit_limit`. |
-| dpd | Days Past Due calculated from `due_date` to `paid_date` (or `2023-12-31` if unpaid). |
-| is_delinquent | Flag for late payment: `1` if `dpd > 0`, else `0`. |
-| is_on_time | Flag for on-time payment: `1` if `dpd <= 0`, else `0`. |
-| dpd_bucket | Categorical delinquency band: `On Time`, `1-30`, `31-60`, `61+`. |
-| payment_ratio | Repayment strength per statement: `amount_paid / amount_due`. |
-| balance_to_income_ratio | Early stress indicator: `current_balance / income_monthly`. |
-| high_util_flag | High leverage flag: `1` if `utilization >= 0.80`, else `0`. |
-| score_band | Risk segmentation based on latest score: `Poor`, `Fair`, `Good`, `Very Good`, `Excellent`. |
-| exposure_at_risk_amount | Row-level risk exposure: `current_balance` if delinquent, else `0`. |
+  </p>
+
+### 🎯Insights
+
+- **SME-like** holds the highest Exposure at Risk (EaR) at **$3.58M**, making it the primary driver of portfolio risk concentration.
+- **Mass** is the second-largest risk bucket at **$2.77M**, indicating that broad retail exposure still contributes materially to overall risk.
+- **Young** shows the lowest EaR (**$0.63M**), suggesting lower absolute risk today, but it may still warrant monitoring if growth or utilization spikes.
 
 
+----------------------------------------
+
+# Monthly Utilization Trend
+
+<p align="center">
+
+<img width="600" height="400" alt="Screenshot 2025-12-07 195217" src="https://github.com/user-attachments/assets/3a6ce47e-c8e6-4149-b999-c9ec96178e92" />
+
+
+  </p>
+
+### 🎯Insights
+
+- Utilization is **stable around ~38%** across 2023, with an overall average of **38.07%**, suggesting steady portfolio credit usage.
+- The **lowest point appears in Jul-23 (37.46%)**, a noticeable dip below the average that could reflect seasonal spending or tighter credit usage mid-year.
+- A **quick rebound follows (peak around 38.34%)** and utilization returns close to the average in later months, indicating no sustained upward risk pressure from utilization alone.
 
 
 
+----------------------------------------
 
+# DPD Bucket Mix by Quarter
+
+<p align="center">
+
+<img width="600" height="400" alt="Screenshot 2025-12-07 195206" src="https://github.com/user-attachments/assets/14daecb0-dce7-42e2-b285-945d84dc5ef2" />
+
+
+
+  </p>
+
+### 🎯Insights
+
+- The payment mix looks **stable across Q1–Q3**, with **On-Time holding ~81.3%–81.7%**, indicating consistent repayment behavior for most of 2023.
+- **Q4 shows a slight deterioration**, where **On-Time drops to 79.53%**, suggesting a late-year shift toward higher delinquency.
+- The **delinquent share appears more concentrated in Q4** (visible uptick in upper buckets), making **Q4 the key quarter to investigate** by segment/region for emerging risk drivers.
+- 
+----------------------------------------
+
+# Score Band × Utilization Band
+
+<p align="center">
+  
+<img width="617" height="400" alt="Screenshot 2025-12-07 195255" src="https://github.com/user-attachments/assets/93ed76dd-c7b6-418d-bec3-12dda2c77911" />
+  </p>
+
+### 🎯Insights
+
+- The **Very High utilization (80%+) cells look consistently elevated** across key score bands (e.g., ~40–43% in Excellent/Fair/Good), suggesting heavy limit usage is common even among stronger-score customers.
+- The **Low utilization (<30%) values appear comparatively smaller** in most bands, which implies utilization alone may not clearly separate risk/score quality without pairing it with payment/DPD signals.
+- The **missing/blank combinations in the “Poor” row** likely indicate low volume or data gaps, so add a view of **account counts per cell** (tooltip or separate bar) to validate the strength of this pattern.
 
 
 
