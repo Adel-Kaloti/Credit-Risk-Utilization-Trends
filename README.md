@@ -188,12 +188,39 @@ Documenting the dimensions ensures a clear understanding of each DIM, This valid
 - The **Low utilization (<30%) values appear comparatively smaller** in most bands, which implies utilization alone may not clearly separate risk/score quality without pairing it with payment/DPD signals.
 - The **missing/blank combinations in the “Poor” row** likely indicate low volume or data gaps, so add a view of **account counts per cell** (tooltip or separate bar) to validate the strength of this pattern.
 
+----------------------------------
+
+# 🤝 Stakeholder Recommendations
+
+- **Prioritize EaR-driven actions by segment.** Focus short-term risk reviews and proactive outreach on **SME-like** and **Mass** segments since they carry the largest Exposure at Risk, then validate if this concentration persists after filtering by product type and region.
+
+- **Implement an early-warning rule combining utilization + behavior.** Flag accounts that move into **High/Very High utilization bands** *and* show rising DPD or declining payment ratio, because utilization alone may not explain risk without a behavior shift.
+
+- **Refine credit limit strategy with guardrails.** For strong score bands with persistently high utilization, consider **structured limit increases** only when on-time rate and payment ratio stay healthy; for weaker bands, add **soft caps** or step-up limits based on 2–3 months of consistent payment performance.
+
+- **Reduce delinquency via channel nudges.** Promote **lower-friction payment channels** (e.g., mobile app/auto-pay) for segments/regions with higher late-payment share, and monitor impact on on-time rate and Avg DPD.
+
+- **Build a monthly risk governance cadence.** Track a compact scorecard: **Portfolio Utilization %, Delinquency %, On-Time %, Avg DPD, EaR** with month-over-month deltas, and require explanations for spikes by **region, segment, and product type** to turn dashboard insights into operational decisions.
 
 
+--------
+### 🧰 Tools Kit
 
+<p align="center">
+  <img src="tools.png" width="600" />
+</p>
 
+<p align="center">
+  <!-- Tableau button -->
+  <a href="https://public.tableau.com/app/profile/adel.kaloti1" target="_blank">
+    <img src="https://img.shields.io/badge/View%20on%20Tableau-006699?style=for-the-badge&logo=tableau&logoColor=white" />
+  </a>
 
-
+  <!-- SQL file button -->
+  <a href="EDA_SQL.txt">
+    <img src="https://img.shields.io/badge/View%20SQL%20File-ff9933?style=for-the-badge&logo=database&logoColor=white" />
+  </a>
+</p>
 
 
 
