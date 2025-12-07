@@ -1,14 +1,14 @@
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/7e22a616-a356-441d-9364-85d03d0ac62f" width="200" />
-</p>
-
 ###   <h1 align="center">Credit Risk & Utilization Trends</h1>   
 
 # Executive Summary
 
 Analyzes credit portfolio data to examine the relationship between utilization, repayment behavior, and customer risk. Identifies high-exposure segments and regions, tracks delinquency concentration over time, and surfaces early risk signals that support targeted monitoring and informed portfolio decisions.
 
-<img width="2396" height="1600" alt="Screenshot 2025-12-06 224010" src="https://github.com/user-attachments/assets/1997ae5f-6b1d-4319-a0ed-6f09f054f535" />
+<img width="2400" height="1600" alt="Screenshot 2025-12-07 195248" src="https://github.com/user-attachments/assets/85cb1d05-5933-490b-8514-ab86310b4d05" />
+
+----------------------------------------------
+
+<img width="2400" height="1600" alt="Screenshot 2025-12-06 224010" src="https://github.com/user-attachments/assets/1997ae5f-6b1d-4319-a0ed-6f09f054f535" />
 
 
 <p align="center">
