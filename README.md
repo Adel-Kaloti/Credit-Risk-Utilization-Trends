@@ -212,13 +212,13 @@ Documenting the dimensions ensures a clear understanding of each DIM, This valid
 
 <p align="center">
   <!-- Tableau button -->
-  <a href="https://public.tableau.com/app/profile/adel.kaloti1" target="_blank">
-    <img src="https://img.shields.io/badge/View%20on%20Tableau-006699?style=for-the-badge&logo=tableau&logoColor=white" />
-  </a>
 
+  <a href="https://public.tableau.com/app/profile/adel.kaloti1" target="_blank">
+    <img src="https://img.shields.io/badge/View%20Interactive Dashboard on%20Tableau-D3B348?style=for-the-badge&logo=tableau&logoColor=white"/>
+  </a>
   <!-- SQL file button -->
-  <a href="EDA_SQL.txt">
-    <img src="https://img.shields.io/badge/View%20SQL%20File-ff9933?style=for-the-badge&logo=database&logoColor=white" />
+  <a href="EDA_SQL/EDA_SQL.txt">
+    <img src="https://img.shields.io/badge/View%20 SQL%20File-006699?style=for-the-badge&logo=database&logoColor=white" />
   </a>
 </p>
 
